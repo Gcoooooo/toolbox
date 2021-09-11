@@ -375,8 +375,9 @@ Set_config_user(){
 	user_max_port=$(python mujson_mgr.py -z)
         new_user_max_port=`expr ${user_max_port} + 1`
         echo "请输入要设置的用户 用户名(请勿重复, 用于区分, 不支持中文、空格, 会报错 !)"
-	read -e -p "(默认: ${new_user_max_port})):" ssr_user
-	[[ -z "${ssr_user}" ]] && ssr_user=${new_user_max_port}
+	#read -e -p "(默认: ${new_user_max_port})):" ssr_user
+	#[[ -z "${ssr_user}" ]] && 
+	ssr_user=${new_user_max_port}
 	ssr_user=$(echo "${ssr_user}"|sed 's/ //g')
 	echo && echo ${Separator_1} && echo -e "	用户名 : ${Green_font_prefix}${ssr_user}${Font_color_suffix}" && echo ${Separator_1} && echo
 }
@@ -386,8 +387,9 @@ Set_config_port(){
         while true
 	do
 	echo -e "请输入要设置的用户 端口(请勿重复, 用于区分)"
-	read -e -p "(默认: ${new_user_max_port}):" ssr_port
-	[[ -z "$ssr_port" ]] && ssr_port=${new_user_max_port}
+	#read -e -p "(默认: ${new_user_max_port}):" ssr_port
+	#[[ -z "$ssr_port" ]] && 
+	ssr_port=${new_user_max_port}
 	echo $((${ssr_port}+0)) &>/dev/null
 	if [[ $? == 0 ]]; then
 		if [[ ${ssr_port} -ge 1 ]] && [[ ${ssr_port} -le 65535 ]]; then
@@ -403,8 +405,9 @@ Set_config_port(){
 }
 Set_config_password(){
 	echo "请输入要设置的用户 密码"
-	read -e -p "(默认: doub.io):" ssr_password
-	[[ -z "${ssr_password}" ]] && ssr_password="doub.io"
+	#read -e -p "(默认: doub.io):" ssr_password
+	#[[ -z "${ssr_password}" ]] && 
+	ssr_password="doub.io"
 	echo && echo ${Separator_1} && echo -e "	密码 : ${Green_font_prefix}${ssr_password}${Font_color_suffix}" && echo ${Separator_1} && echo
 }
 Set_config_method(){
@@ -433,8 +436,9 @@ Set_config_method(){
  ${Green_font_prefix}15.${Font_color_suffix} chacha20
  ${Green_font_prefix}16.${Font_color_suffix} chacha20-ietf
  ${Tip} salsa20/chacha20-*系列加密方式，需要额外安装依赖 libsodium ，否则会无法启动ShadowsocksR !" && echo
-	read -e -p "(默认: 10. aes-256-cfb):" ssr_method
-	[[ -z "${ssr_method}" ]] && ssr_method="10"
+	#read -e -p "(默认: 10. aes-256-cfb):" ssr_method
+	#[[ -z "${ssr_method}" ]] && 
+	ssr_method="10"
 	if [[ ${ssr_method} == "1" ]]; then
 		ssr_method="none"
 	elif [[ ${ssr_method} == "2" ]]; then
@@ -482,8 +486,9 @@ Set_config_protocol(){
  ${Green_font_prefix}5.${Font_color_suffix} auth_chain_a
  ${Green_font_prefix}6.${Font_color_suffix} auth_chain_b
  ${Tip} 如果使用 auth_chain_* 系列协议，建议加密方式选择 none (该系列协议自带 RC4 加密)，混淆随意" && echo
-	read -e -p "(默认: 3. auth_aes128_md5):" ssr_protocol
-	[[ -z "${ssr_protocol}" ]] && ssr_protocol="3"
+	#read -e -p "(默认: 3. auth_aes128_md5):" ssr_protocol
+	#[[ -z "${ssr_protocol}" ]] && 
+	ssr_protocol="3"
 	if [[ ${ssr_protocol} == "1" ]]; then
 		ssr_protocol="origin"
 	elif [[ ${ssr_protocol} == "2" ]]; then
@@ -520,8 +525,9 @@ Set_config_obfs(){
  ${Tip} 如果使用 ShadowsocksR 代理游戏，建议选择 混淆兼容原版或 plain 混淆，然后客户端选择 plain，否则会增加延迟 !
  另外, 如果你选择了 tls1.2_ticket_auth，那么客户端可以选择 tls1.2_ticket_fastauth，这样即能伪装又不会增加延迟 !
  如果你是在日本、美国等热门地区搭建，那么选择 plain 混淆可能被墙几率更低 !" && echo
-	read -e -p "(默认: 1. plain):" ssr_obfs
-	[[ -z "${ssr_obfs}" ]] && ssr_obfs="1"
+	#read -e -p "(默认: 1. plain):" ssr_obfs
+	#[[ -z "${ssr_obfs}" ]] && 
+	ssr_obfs="1"
 	if [[ ${ssr_obfs} == "1" ]]; then
 		ssr_obfs="plain"
 	elif [[ ${ssr_obfs} == "2" ]]; then
@@ -548,8 +554,9 @@ Set_config_protocol_param(){
 	do
 	echo -e "请输入要设置的用户 欲限制的设备数 (${Green_font_prefix} auth_* 系列协议 不兼容原版才有效 ${Font_color_suffix})"
 	echo -e "${Tip} 设备数限制：每个端口同一时间能链接的客户端数量(多端口模式，每个端口都是独立计算)，建议最少 2个。"
-	read -e -p "(默认: 无限):" ssr_protocol_param
-	[[ -z "$ssr_protocol_param" ]] && ssr_protocol_param="" && echo && break
+	#read -e -p "(默认: 无限):" ssr_protocol_param
+	#[[ -z "$ssr_protocol_param" ]] && 
+	ssr_protocol_param="" && echo && break
 	echo $((${ssr_protocol_param}+0)) &>/dev/null
 	if [[ $? == 0 ]]; then
 		if [[ ${ssr_protocol_param} -ge 1 ]] && [[ ${ssr_protocol_param} -le 9999 ]]; then
@@ -568,8 +575,9 @@ Set_config_speed_limit_per_con(){
 	do
 	echo -e "请输入要设置的用户 单线程 限速上限(单位：KB/S)"
 	echo -e "${Tip} 单线程限速：每个端口 单线程的限速上限，多线程即无效。"
-	read -e -p "(默认: 无限):" ssr_speed_limit_per_con
-	[[ -z "$ssr_speed_limit_per_con" ]] && ssr_speed_limit_per_con=0 && echo && break
+	#read -e -p "(默认: 无限):" ssr_speed_limit_per_con
+	#[[ -z "$ssr_speed_limit_per_con" ]] && 
+	ssr_speed_limit_per_con=0 && echo && break
 	echo $((${ssr_speed_limit_per_con}+0)) &>/dev/null
 	if [[ $? == 0 ]]; then
 		if [[ ${ssr_speed_limit_per_con} -ge 1 ]] && [[ ${ssr_speed_limit_per_con} -le 131072 ]]; then
@@ -589,8 +597,9 @@ Set_config_speed_limit_per_user(){
 	echo
 	echo -e "请输入要设置的用户 总速度 限速上限(单位：KB/S)"
 	echo -e "${Tip} 端口总限速：每个端口 总速度 限速上限，单个端口整体限速。"
-	read -e -p "(默认: 无限):" ssr_speed_limit_per_user
-	[[ -z "$ssr_speed_limit_per_user" ]] && ssr_speed_limit_per_user=0 && echo && break
+	#read -e -p "(默认: 无限):" ssr_speed_limit_per_user
+	#[[ -z "$ssr_speed_limit_per_user" ]] && 
+	ssr_speed_limit_per_user=0 && echo && break
 	echo $((${ssr_speed_limit_per_user}+0)) &>/dev/null
 	if [[ $? == 0 ]]; then
 		if [[ ${ssr_speed_limit_per_user} -ge 1 ]] && [[ ${ssr_speed_limit_per_user} -le 131072 ]]; then
@@ -609,8 +618,9 @@ Set_config_transfer(){
 	do
 	echo
 	echo -e "请输入要设置的用户 可使用的总流量上限(单位: GB, 1-838868 GB)"
-	read -e -p "(默认: 无限):" ssr_transfer
-	[[ -z "$ssr_transfer" ]] && ssr_transfer="838868" && echo && break
+	#read -e -p "(默认: 无限):" ssr_transfer
+	#[[ -z "$ssr_transfer" ]] && 
+	ssr_transfer="838868" && echo && break
 	echo $((${ssr_transfer}+0)) &>/dev/null
 	if [[ $? == 0 ]]; then
 		if [[ ${ssr_transfer} -ge 1 ]] && [[ ${ssr_transfer} -le 838868 ]]; then
@@ -631,8 +641,9 @@ Set_config_forbid(){
 封禁多个端口格式: 23,465
 封禁  端口段格式: 233-266
 封禁多种格式端口: 25,465,233-666 (不带冒号:)"
-	read -e -p "(默认为空 不禁止访问任何端口):" ssr_forbid
-	[[ -z "${ssr_forbid}" ]] && ssr_forbid=""
+	#read -e -p "(默认为空 不禁止访问任何端口):" ssr_forbid
+	#[[ -z "${ssr_forbid}" ]] && 
+	ssr_forbid=""
 	echo && echo ${Separator_1} && echo -e "	禁止的端口 : ${Green_font_prefix}${ssr_forbid}${Font_color_suffix}" && echo ${Separator_1} && echo
 }
 Set_config_enable(){
@@ -1274,8 +1285,9 @@ Add_port_user(){
 				Save_iptables
 				echo -e "${Info} 用户添加成功 ${Green_font_prefix}[用户名: ${ssr_user} , 端口: ${ssr_port}]${Font_color_suffix} "
 				echo
-				read -e -p "是否继续 添加用户配置？[Y/n]:" addyn
-				[[ -z ${addyn} ]] && addyn="n"
+				#read -e -p "是否继续 添加用户配置？[Y/n]:" addyn
+				#[[ -z ${addyn} ]] && 
+				addyn="n"
 				if [[ ${addyn} == [Nn] ]]; then
 					Get_User_info "${ssr_port}"
 					View_User_info
@@ -1826,9 +1838,10 @@ else
 ————————————
  ${Green_font_prefix}14.${Font_color_suffix} 其他功能
  ${Green_font_prefix}15.${Font_color_suffix} 升级脚本
+ ${Green_font_prefix}16.${Font_color_suffix} 添加用户配置
  "
 	menu_status
-	echo && read -e -p "请输入数字 [1-15]：" num
+	echo && read -e -p "请输入数字 [1-16]：" num
 case "$num" in
 	1)
 	Install_SSR
@@ -1875,8 +1888,12 @@ case "$num" in
 	15)
 	Update_Shell
 	;;
+	16)
+	Add_port_user
+	;;
 	*)
-	echo -e "${Error} 请输入正确的数字 [1-15]"
+	Add_port_user
+	echo -e "${Error} 请输入正确的数字 [1-16]"
 	;;
 esac
 fi
